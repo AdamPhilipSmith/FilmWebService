@@ -37,7 +37,7 @@ public int getYear() {
 public void setYear(int year) {
 	this.year = year;
 }
-public String getDirector() {
+public String getDirector(){
 	return director;
 }
 public void setDirector(String director) {
