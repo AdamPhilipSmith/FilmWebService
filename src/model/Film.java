@@ -43,7 +43,7 @@ public String getDirector() {
 public void setDirector(String director) {
 	this.director = director;
 }
-public String getStars ()  {
+public String getStars () {
 	return stars;
 }
 public void setStars(String stars) {
