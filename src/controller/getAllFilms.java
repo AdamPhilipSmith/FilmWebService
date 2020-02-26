@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 //import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -20,14 +21,14 @@ import model.FilmDAO;
 /**
  * Servlet implementation class Controller
  */
-@WebServlet("/Controller")
-public class Controller extends HttpServlet {
+@WebServlet("/getAllFilms")
+public class getAllFilms extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Controller() {
+    public getAllFilms() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -51,7 +52,7 @@ public class Controller extends HttpServlet {
 		
 		//Film f = fdao.getFilmByID(10013) ;
 		
-		
+		//TODO The following uses MVC. CHeck video Part 2 - 14:30
 		 request.setAttribute("films", films);
 		    String format = request.getParameter("format");
 		    String outputPage;
