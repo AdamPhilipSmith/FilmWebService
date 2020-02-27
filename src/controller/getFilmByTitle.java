@@ -37,11 +37,14 @@ public class getFilmByTitle extends HttpServlet {
 		
 		FilmDAO fdao = new FilmDAO();
 		
-		String searchFilmname = request.getParameter("Filmname");
+		String searchFilmname = request.getParameter("filmname");
 		
 		ArrayList<Film> films = fdao.getFilmByTitle(searchFilmname);
 		 
 		request.setAttribute("films", films);
+		
+		//TODO for debug. Remove later
+				System.out.println(films);
 		 	
 		 	
 		 	

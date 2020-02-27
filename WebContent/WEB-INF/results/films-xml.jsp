@@ -8,7 +8,8 @@
 <%
 FilmList films = new FilmList((List<Film>) request.getAttribute("films"));
 try{
-
+	
+	//Uses JaxB to print out the code.
 	JAXBContext jaxbContext = JAXBContext.newInstance(FilmList.class);
 	Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 	//output pretty printed jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);

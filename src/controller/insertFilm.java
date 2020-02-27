@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-//import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -12,23 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import com.google.gson.Gson;
-
-//import coreservlets.String;
 import model.Film;
 import model.FilmDAO;
 
 /**
- * Servlet implementation class Controller
+ * Servlet implementation class insertFilm
  */
-@WebServlet("/getAllFilms")
-public class getAllFilms extends HttpServlet {
+@WebServlet("/insertFilm")
+public class insertFilm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public getAllFilms() {
+    public insertFilm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,24 +33,28 @@ public class getAllFilms extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+FilmDAO fdao = new FilmDAO();
 		
-		//PrintWriter out = response.getWriter();
-		FilmDAO fdao = new FilmDAO();
-		
-		ArrayList<Film> films = fdao.getAllFilms();
-		
-		//TODO for debug. Remove later
-		System.out.println(films);
-		
+		int id = Integer.parseInt(request.getParameter("ID"));
+		String filmname = request.getParameter("Filmname");
+		int year = Integer.parseInt(request.getParameter("Year"));
+		String director = request.getParameter("Director");
+		String stars = request.getParameter("Stars");
+		String review = request.getParameter("Review");
 		
 		
+		Film f = new Film(id, filmname, year, director, stars, review);
+		
+		System.out.println(fdao.insertFilm(f));
 		
 		
-		//Film f = fdao.getFilmByID(10013) ;
+		 
 		
-		//TODO The following uses MVC. CHeck video Part 2 - 14:30
-		 request.setAttribute("films", films);
+		
+		
+		 	
+		//TODO add insert film/get film by ID etc.
+				//TODO viewers below expects a list of items, so maybe need to use array for an individual.
 		    String format = request.getParameter("format");
 		    String outputPage;
 		    if ("xml".equals(format)) {
@@ -65,7 +64,7 @@ public class getAllFilms extends HttpServlet {
 		      response.setContentType("application/json");
 		      outputPage = "/WEB-INF/results/films-json.jsp";
 		    } else {
-		    	//TODO Iterate over films list, one element at a time, priniting each value. (Check Demo Datastore)
+		    	//TODO Iterate over films list, one element at a time, printing each value. (Check Demo Datastore)
 		      response.setContentType("text/plain");
 		      outputPage = "/WEB-INF/results/films-string.jsp";
 		    }
