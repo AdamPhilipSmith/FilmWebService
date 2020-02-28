@@ -34,9 +34,10 @@ function showXmlCityInfo(request, resultRegion) {
       (request.status == 200)) {
     var xmlDocument = request.responseXML;
     var headings = getXmlValues(xmlDocument, "heading");
-    var cities = xmlDocument.getElementsByTagName("city");
+    var cities = xmlDocument.getElementsByTagName("film");
     var rows = new Array(cities.length);
-    var subElementNames = ["name", "time", "population"];
+    var subElementNames = ["id", "title", "year", "director", "stars", "review"];
+    
     for(var i=0; i<cities.length; i++) {
       rows[i] = 
         getElementValues(cities[i], subElementNames);
