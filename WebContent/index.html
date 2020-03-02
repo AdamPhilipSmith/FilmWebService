@@ -9,23 +9,83 @@
         type="text/javascript"></script>
 <script src="./scripts/ajax-data.js"
         type="text/javascript"></script>
+        <script src="./scripts/warmups.js"
+        type="text/javascript"></script>
+        
+        
+<script>
+$(document).on("click", "#somebutton", function() { // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
+    $.get("getAllFilms", function(responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
+        $("#somediv").text(responseText);           // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
+    });
+});
+</script>
 </head>
 <body>
 <div align="center">
 <table border="5">
   <tr><th class="title">Films</th></tr>
 </table>
-<br/>
-<input type="button" value="All Films XML"
-          onclick='showXmlCityInfo("get-all-films", "xml")'/>
-<br/>
-<br/>
-<input type="button" value="All Films JSON"
-          onclick='xmlCityTable("city-type-1", "xml-city-table")'/>
-<br/>
-<br/>
-<input type="button" value="All Films String"
-          onclick='xmlCityTable("city-type-1", "xml-city-table")'/>
+
+
+         
+          <input type="button" value="Say Hi"
+         onclick='alert("Hi")'/>
+         
+       <fieldset>
+<legend>Alert with number from JSP</legend>
+  <input type="button" value="Show Random Number"
+         onclick='ajaxAlert("show-number.jsp")'/>
+</fieldset>
+
+<fieldset>
+<legend>All Films</legend>
+  <input type="button" value="Show All Films MVC"
+         onclick='ajaxAlert("getAllFilms","?format=xml")'/>
+         <div id="num-list-result-2"></div>
+</fieldset>
+
+<fieldset>
+<legend>All Films</legend>
+  <input type="button" value="Show All Films in JSON"
+         onclick='ajaxAlert("films-json.jsp")'/>
+</fieldset>
+
+<legend>HTML insertion of number list from MVC</legend>
+  <input type="button" value="Show Random Numbers"
+         onclick='ajaxResult("show-number-list",
+                              "num-list-result-2")'/>
+  <div id="num-list-result-2"></div>
+</fieldset>
+
+<fieldset>
+<legend>All Films</legend>
+  <input type="button" value="Show All Films in JSON"
+         onclick='ajaxAlert("films-json.jsp")'/>
+</fieldset>
+showXmlCityInfo(request, resultRegion)
+
+<fieldset>
+  <legend>Getting film by Name in XML</legend>
+  <form action="#">
+   <label for="city-type-1">City Type:</label>
+   <select id="city-type-1">
+     <option value="WARS">Wars</option>
+     <option value="Time">Time</option>
+     <option value="house">House</option>
+     <option value="mice">Mice</option>
+    </select>
+   <br/>
+   <input type="button" value="Show Cities"
+          onclick='xmlSearchFilm("city-type-1", "table")'/>
+  </form>
+  <p/>
+  <div id="table"></div>
+</fieldset>
+
+
+
+
 <p/>
 </div>
 </body>

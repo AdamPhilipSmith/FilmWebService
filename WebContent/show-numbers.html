@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>Ajax Basics 1: Random Numbers from Server</title>
+<link rel="stylesheet"
+      href="./css/styles.css"
+      type="text/css"/>
+<script src="./scripts/ajax-utils.js"
+        type="text/javascript"></script>
+</head>
+<body>
+<div align="center">
+<table border="5">
+  <tr><th class="title">Ajax Basics 1: Random Numbers from Server</th></tr>
+</table>
+<p/>
+<fieldset>
+<legend>Alert with number from JSP</legend>
+  <input type="button" value="Show Random Number"
+         onclick='ajaxAlert("show-number.jsp")'/>
+</fieldset>
+<p/>
+<fieldset>
+<legend>Alert with number from Servlet</legend>
+  <input type="button" value="Show Random Number"
+         onclick='ajaxAlert("show-number")'/>
+</fieldset>
+<p/>
+<fieldset>
+<legend>HTML insertion of number list from JSP</legend>
+  <input type="button" value="Show Random Numbers"
+         onclick='ajaxResult("show-number-list.jsp",
+                              "num-list-result-1")'/>
+  <div id="num-list-result-1"></div>
+</fieldset>
+<p/>
+<fieldset>
+<legend>HTML insertion of number list from MVC</legend>
+  <input type="button" value="Show Random Numbers"
+         onclick='ajaxResult("show-number-list",
+                              "num-list-result-2")'/>
+  <div id="num-list-result-2"></div>
+</fieldset>
+
+
+</div>
+</body></html>

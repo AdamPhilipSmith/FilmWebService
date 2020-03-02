@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>Ajax Basics 1: Warmups</title>
+<link rel="stylesheet"
+      href="./css/styles.css"
+      type="text/css"/>
+<script src="./scripts/warmups.js"
+        type="text/javascript"></script>
+<script src="./scripts/ajax-utils.js"
+        type="text/javascript"></script>
+</head>
+<body>
+<div align="center">
+<table border="5">
+  <tr><th class="title">Ajax Basics 1: Warmups</th></tr>
+</table>
+<p/>
+<fieldset>
+  <legend>Pop Up Dialog Box (Directly)</legend>
+  <input type="button" value="Say Hi"
+         onclick='alert("Hi")'/>
+</fieldset>
+<p/>
+<fieldset>
+  <legend>Pop Up Dialog Box (Via Function)</legend>
+  <input type="button" value="Say Hi"
+         onclick='sayHi()'/>
+</fieldset>
+<p/>
+<fieldset>
+  <legend>Show Number (from Ajax)</legend>
+  <input type="button" value="Show Random Number"
+         onclick='ajaxAlert("show-number.jsp")'/>
+</fieldset>
+</div></body></html>

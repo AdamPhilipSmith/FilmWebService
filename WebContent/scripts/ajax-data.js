@@ -19,9 +19,9 @@ function randomSales() {
 // See combined version at end that can handle
 // any of XML, JSON, or String data.
 
-function xmlCityTable(inputField, resultRegion) {
-  var address = "show-cities";
-  var data = "cityType=" + getValue(inputField) +
+function xmlSearchFilm(inputField, resultRegion) {
+  var address = "getAllFilms";
+  var data = "filmname=" + getValue(inputField) +
              "&format=xml";
   ajaxPost(address, data, 
            function(request) { 
