@@ -37,9 +37,9 @@ public class getFilmByTitle extends HttpServlet {
 		
 		FilmDAO fdao = new FilmDAO();
 		
-		String searchFilmname = request.getParameter("filmname");
+		String searchFilmName = request.getParameter("filmname");
 		
-		ArrayList<Film> films = fdao.getFilmByTitle(searchFilmname);
+		ArrayList<Film> films = fdao.getFilmByTitle(searchFilmName);
 		 
 		request.setAttribute("films", films);
 		
