@@ -29,6 +29,15 @@ function xmlSearchFilm(inputField, resultRegion) {
            });
 }
 
+function ajaxAlert(address) {
+	  var request = getRequestObject();
+	  request.onreadystatechange = 
+	    function() { showResponseAlert(request); };
+	  request.open("GET", address, true);
+	  request.send(null);
+	}
+
+
 function showXmlCityInfo(request, resultRegion) {
   if ((request.readyState == 4) &&
       (request.status == 200)) {
@@ -46,6 +55,8 @@ function showXmlCityInfo(request, resultRegion) {
     htmlInsert(resultRegion, table);
   }
 }
+
+
 
 function jsonCityTable(inputField, resultRegion) {
   var address = "show-cities";

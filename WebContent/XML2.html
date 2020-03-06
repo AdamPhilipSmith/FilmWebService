@@ -1,0 +1,44 @@
+   <script src="Scripts/jquery-1.7.1.js"></script>
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $("#btnGetData").click(function () {
+                $("#UpdatePanel").html("Please wait...");
+                $.ajax({
+                    url: "/cd_catalog.xml",
+                    type: "GET",
+                    dataType: "xml",
+                    success: OnSuccess,
+                    error: OnError
+                });
+            });
+        });
+ 
+        function OnSuccess(xml) {
+            var tableContent = "<table border='1' cellspacing='0' cellpadding='5'>" +
+                                "<tr>" +
+                                    "<th>TITLE</th>" +
+                                    "<th>ARTIST</th>" +
+                                    "<th>COUNTRY</th>" +
+                                    "<th>COMPANY</th>" +
+                                    "<th>PRICE</th>" +
+                                    "<th>YEAR</th>" +
+                                "</tr>";
+            $(xml).find('CD').each(function () {
+                tableContent += "<tr>" +
+                                    "<td>" + $(this).find('TITLE').text() + "</td>" +
+                                    "<td>" + $(this).find('ARTIST').text() + "</td>" +
+                                    "<td>" + $(this).find('COUNTRY').text() + "</td>" +
+                                    "<td>" + $(this).find('COMPANY').text() + "</td>" +
+                                    "<td>" + $(this).find('PRICE').text() + "</td>" +
+                                    "<td>" + $(this).find('YEAR').text() + "</td>" +
+                                "</tr>";
+            });
+            tableContent += "</table>";
+            $("#UpdatePanel").html(tableContent);
+        }
+ 
+        function OnError(data) {
+            $("#UpdatePanel").html("Error! Please try again.");
+        }
+ 
+    </script>

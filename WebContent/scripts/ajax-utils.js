@@ -12,6 +12,16 @@ function getRequestObject() {
   }
 }
 
+function ajaxPost(address, data, responseHandler) {
+	  var request = getRequestObject();
+	  request.onreadystatechange = 
+	    function() { responseHandler(request); };
+	  request.open("POST", address, true);
+	  request.setRequestHeader("Content-Type", 
+	                           "application/x-www-form-urlencoded");
+	  request.send(data);
+	}
+
 // Make an HTTP request to the given address. 
 // Display result in an alert box.
 
@@ -43,6 +53,70 @@ function ajaxResult(address, resultRegion) {
   request.open("GET", address, true);
   request.send(null);
 }
+
+function ajaxFormatResult(address, formatField, resultRegion) {
+	  var request = getRequestObject();
+	  var format = getValue(formatField);
+	  request.onreadystatechange = 
+	    function() { showResponseText(request, 
+	                                  resultRegion); };
+	  request.open("GET", address, true);
+	  request.send(null);
+	}
+
+function ajaxFormatResult2(formatField, resultRegion) {
+	  var address = "getAllFilms";
+	  
+	  var format = getValue(formatField);
+	  var data = "format=" + format ;
+	  var responseHandler = findHandler(format);
+	  ajaxPost(address, data, 
+	           function(request) { 
+	             responseHandler(request, resultRegion); 
+	           });
+	}
+
+function findHandler(format) {
+	  if (format == "xml") {
+	    return(showXmlCityInfo);
+	  } else if (format == "json") {
+	    return(showJsonCityInfo);
+	  } else {
+	    return(showStringCityInfo);
+	  }
+	}
+
+
+function showXmlCityInfo(request, resultRegion) {
+	  if ((request.readyState == 4) &&
+	      (request.status == 200)) {
+	    var xmlDocument = request.responseXML;
+	    var headings = getXmlValues(xmlDocument, "filmlist");
+	    var cities = xmlDocument.getElementsByTagName("film");
+	    var rows = new Array(cities.length);
+	    var subElementNames = ["id", "title", "year", "director", "stars", "review"];
+	    
+	    for(var i=0; i<cities.length; i++) {
+	      rows[i] = 
+	        getElementValues(cities[i], subElementNames);
+	    }
+	    var table = getTable(headings, rows);
+	    htmlInsert(resultRegion, table);
+	  }
+	}
+
+function cityTable(cityTypeField, formatField, resultRegion) {
+	  var address = "show-cities";
+	  var cityType = getValue(cityTypeField);
+	  var format = getValue(formatField);
+	  var data = "cityType=" + cityType +
+	             "&format=" + format;
+	  var responseHandler = findHandler(format);
+	  ajaxPost(address, data, 
+	           function(request) { 
+	             responseHandler(request, resultRegion); 
+	           });
+	}
 
 // Put response text in the HTML element that has given ID.
 
