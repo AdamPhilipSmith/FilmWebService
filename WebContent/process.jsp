@@ -29,9 +29,9 @@
 	 
 	System.out.println(fdao.insertFilm(f));
 	
-	if (fdao.insertFilm(f) == 1){
+	//if (fdao.insertFilm(f) == 1){
 		
-	}
+	//}
  
 
 /**
