@@ -61,13 +61,13 @@ public class getAllFilms extends HttpServlet {
 		    if ("xml".equals(format)) {
 		      response.setContentType("text/xml");
 		      outputPage = "/WEB-INF/results/films-xml.jsp";
-		    } else if ("json".equals(format)) {
-		      response.setContentType("application/json");
-		      outputPage = "/WEB-INF/results/films-json.jsp";
-		    } else {
-		    	//TODO Iterate over films list, one element at a time, priniting each value. (Check Demo Datastore)
+		    } else if ("text".equals(format)) {
 		      response.setContentType("text/plain");
 		      outputPage = "/WEB-INF/results/films-string.jsp";
+		    } else {
+		    	//no formating selected means Json will be chosen as the default
+		      response.setContentType("application/json");
+		      outputPage = "/WEB-INF/results/films-json.jsp";
 		    }
 		    RequestDispatcher dispatcher =
 		      request.getRequestDispatcher(outputPage);

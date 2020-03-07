@@ -48,24 +48,24 @@ public class getFilmByTitle extends HttpServlet {
 		 	
 		 	
 		 	
-		    String format = request.getParameter("format");
-		    String outputPage;
-		    if ("xml".equals(format)) {
-		      response.setContentType("text/xml");
-		      outputPage = "/WEB-INF/results/films-xml.jsp";
-		    } else if ("json".equals(format)) {
-		      response.setContentType("application/json");
-		      outputPage = "/WEB-INF/results/films-json.jsp";
-		    } else {
-		    	//TODO Iterate over films list, one element at a time, printing each value. (Check Demo Datastore)
-		      response.setContentType("text/plain");
-		      outputPage = "/WEB-INF/results/films-string.jsp";
-		    }
-		    RequestDispatcher dispatcher =
-		      request.getRequestDispatcher(outputPage);
-		    dispatcher.include(request, response);
-	}
-
+				 request.setAttribute("films", films);
+				    String format = request.getParameter("format");
+				    String outputPage;
+				    if ("xml".equals(format)) {
+				      response.setContentType("text/xml");
+				      outputPage = "/WEB-INF/results/films-xml.jsp";
+				    } else if ("text".equals(format)) {
+				      response.setContentType("text/plain");
+				      outputPage = "/WEB-INF/results/films-string.jsp";
+				    } else {
+				    	//no formating selected means Json will be chosen as the default
+				      response.setContentType("application/json");
+				      outputPage = "/WEB-INF/results/films-json.jsp";
+				    }
+				    RequestDispatcher dispatcher =
+				      request.getRequestDispatcher(outputPage);
+				    dispatcher.include(request, response);
+			}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
