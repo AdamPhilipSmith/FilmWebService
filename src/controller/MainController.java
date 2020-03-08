@@ -20,7 +20,8 @@ public class MainController {
 		//Prints out all films to String
 		for(int i=0; i<films.size(); i++) {
 			Film oneFilm = films.get(i);
-			System.out.println(oneFilm.toString());
+			System.out.println("Title: " + oneFilm.getTitle() + "\n" + "Year: " + oneFilm.getYear() + "\n" + "Director: " + oneFilm.getDirector() + "\n" + "Stars: " + oneFilm.getStars() + "\n" + "Review: " + oneFilm.getReview());
+			System.out.println("-------------------------------------------");
 		}
 		
 		
@@ -33,7 +34,6 @@ public class MainController {
 		//Prints out a film searched by ID
 		Film byID = fdao.getFilmByID(10013);
 		System.out.println(byID.toString());
-		
 		
 		//Prints out all films containing the chosen title
 		ArrayList<Film> searchedFilms = fdao.getFilmByTitle("wars");

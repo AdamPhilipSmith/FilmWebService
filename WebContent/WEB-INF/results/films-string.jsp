@@ -5,12 +5,11 @@
 <%
 List<Film> films = (List<Film>) request.getAttribute("films");
 
-
-//Converts Array of film object to an array of Strings
-List<String> filmString = new ArrayList<>(films.size());
-for (Film film : films) {
-    filmString.add(film != null ? film.toString() : null);
+for(int i=0; i<films.size(); i++) {
+	Film oneFilm = films.get(i);
+	response.getWriter().println("Title: " + oneFilm.getTitle() + "\n" + "Year: " + oneFilm.getYear() + "\n" + "Director: " + oneFilm.getDirector() + "\n" + "Stars: " + oneFilm.getStars() + "\n" + "Review: " + oneFilm.getReview());
+	response.getWriter().println("-------------------------------------------");
 }
-String test = "test";
-response.getWriter().println(films); 
+
+
 %>
