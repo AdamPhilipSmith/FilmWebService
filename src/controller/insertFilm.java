@@ -48,7 +48,12 @@ public class insertFilm extends HttpServlet {
 		
 		//TODO remember what the int's were
 		//Inserts film to database and prints out an int to console to advise if it was successful
-		System.out.println(fdao.insertFilm(f));
+		if (fdao.insertFilm(f) == 1) {
+			System.out.println("Your film has been added to the database.");	
+		}
+		else {
+			System.out.println("Your film was not added.");
+		}
 
 		
 		
