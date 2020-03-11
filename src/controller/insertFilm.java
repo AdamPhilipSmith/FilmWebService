@@ -38,16 +38,16 @@ public class insertFilm extends HttpServlet {
 		FilmDAO fdao = new FilmDAO();
 
 		int id = Integer.parseInt(request.getParameter("ID"));
-		String filmname = request.getParameter("Filmname");
+		String title = request.getParameter("Title");
 		int year = Integer.parseInt(request.getParameter("Year"));
 		String director = request.getParameter("Director");
 		String stars = request.getParameter("Stars");
 		String review = request.getParameter("Review");
 
-		Film f = new Film(id, filmname, year, director, stars, review);
+		Film f = new Film(id, title, year, director, stars, review);
 		
 		//TODO remember what the int's were
-		//Inserts film to database and prints out an int to console to advise if it was successful
+		//Inserts film to database and prints out a message to console to advise if it was successful
 		if (fdao.insertFilm(f) == 1) {
 			System.out.println("Your film has been added to the database.");	
 		}
@@ -58,25 +58,7 @@ public class insertFilm extends HttpServlet {
 		
 		
 		
-		// TODO add insert film/get film by ID etc.
-		// TODO viewers below expects a list of items, so maybe need to use array for an
-		// individual.
-		String format = request.getParameter("format");
-	    String outputPage;
-	    if ("xml".equals(format)) {
-	      response.setContentType("text/xml");
-	      outputPage = "/WEB-INF/results/films-xml.jsp";
-	    } else if ("text".equals(format)) {
-	      response.setContentType("text/plain");
-	      outputPage = "/WEB-INF/results/films-string.jsp";
-	    } else {
-	    	//no formating selected means Json will be chosen as the default
-	      response.setContentType("application/json");
-	      outputPage = "/WEB-INF/results/films-json.jsp";
-	    }
-	    RequestDispatcher dispatcher =
-	      request.getRequestDispatcher(outputPage);
-	    dispatcher.include(request, response);
+		
 }
 
 	

@@ -29,17 +29,22 @@
 	 
 	System.out.println(fdao.insertFilm(f));
 	
-	//if (fdao.insertFilm(f) == 1){
-		
-	//}
+	
  
 
 /**
- * Sends the user back to the Dashboard once
+ * Sends the user back to the homepage once
  *they have added the film and then informs them
  *that it has been added.
  */ 
 response.sendRedirect("index.html");
+
+if (fdao.insertFilm(f) == 1) {
+	System.out.println("Your film has been added to the database.");	
+}
+else {
+	System.out.println("Your film was not added.");
+}
 
 %>
 </body>

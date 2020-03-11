@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="./css/styles.css" type="text/css" />
 
 <!-- Look into removing below -->
-<script src="./scripts/ajax-utils.js" type="text/javascript"></script>
-<script src="./scripts/ajax-data.js" type="text/javascript"></script>
+<!--  <script src="./scripts/ajax-utils.js" type="text/javascript"></script>
+<script src="./scripts/ajax-data.js" type="text/javascript"></script> -->
 
 <script src="./scripts/myScripts.js" type="text/javascript"></script>
 
@@ -22,12 +22,32 @@
 <body>
 
 
-	<input type="button" value="Show All Films in XML as table" id="button"
-		onclick='allFilmsXMLTable()' />
-	<div id="films"></div>
 
-	<input type="button" value="Show All Films in Json as table"
-		id="button" onclick='allFilmsJsonTable()' />
+<fieldset>
+  <legend>Get all films</legend>
+  <form action="#">
+   <label for="format-type">Format Type:</label>
+   <select id="format-type">
+     <option value="xml" selected="selected">XML</option>
+     <option value="json">JSON</option>
+     <option value="test">TEXT</option>
+     
+    </select>
+   <br/>
+   <input type="button" value="Show Films"
+          onclick='outputController()'/>
+  </form>
+  <p/>
+  <div id="table2"></div>
+</fieldset>
+
+
+	<!--  <input type="button" value="Show All Films in XML as table" id="button"
+		onclick='allFilmsXMLTable()' />
+	<div id="films"></div> -->
+
+	<input type="button" value="Show All Films in Text as table"
+		id="button" onclick='allFilmsTextTable()' />
 	<div id="films"></div>
 
 	<input type="button" value="Search for films in Json" id="button"
@@ -51,8 +71,9 @@
 	<input type="text" id="searchString3">
 	<br>
 	
-	<button onclick="window.location.href = 'addFilm.jsp';">Add Film</button>
-
+	<button onclick="window.location.href = 'addFilm.html';">Add Film</button>
+	
+	
 
 
 
@@ -63,7 +84,7 @@
 
 	<div class="container">
 		<div class="table-responsive">
-			<h1>Your Results Will Appear below!</h1>
+			<h1>Results</h1>
 			<br />
 			<table class="table table-bordered table-striped" id="table">
 				<thead>
