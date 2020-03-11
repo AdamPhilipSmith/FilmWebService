@@ -5,6 +5,8 @@
 <%
 List<Film> films = (List<Film>) request.getAttribute("films");
 
+
+//Outputs text formatted to be more readable
 for(int i=0; i<films.size(); i++) {
 	Film oneFilm = films.get(i);
 	response.getWriter().println("Title: " + oneFilm.getTitle() + "\n" + "Year: " + oneFilm.getYear() + "\n" + "Director: " + oneFilm.getDirector() + "\n" + "Stars: " + oneFilm.getStars() + "\n" + "Review: " + oneFilm.getReview());

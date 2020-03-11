@@ -9,11 +9,11 @@
 FilmList films = new FilmList((List<Film>) request.getAttribute("films"));
 try{
 	
-	//Uses JaxB to print out the code.
+	// Accesses filmlist. Uses JAXB API to enable to output of XML
 	JAXBContext jaxbContext = JAXBContext.newInstance(FilmList.class);
 	Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-	//output pretty printed jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-	jaxbMarshaller.marshal(films, out);// out is the stream back top browser
+	
+	jaxbMarshaller.marshal(films, out);
 	} catch (JAXBException e) { e.printStackTrace();
 	}
 %>

@@ -36,18 +36,22 @@ public class deleteFilm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		//Creates new instance of FilmDAO
+		FilmDAO filmDAO = new FilmDAO();
 		
-		FilmDAO fdao = new FilmDAO();
+		//Gets the filmid parameter, converts it to an int.
 
 		String deleteFilmId = request.getParameter("filmid");
 
 		int deleteFilmIdInt = Integer.parseInt(deleteFilmId);
-
+		
+		
+		// calls the DAO to delete the selected film
 		int i = 0;
 		try {
-			i = fdao.deleteFilm(deleteFilmIdInt);
+			i = filmDAO.deleteFilm(deleteFilmIdInt);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
@@ -64,14 +68,17 @@ public class deleteFilm extends HttpServlet {
 
 		String format = request.getParameter("format");
 		String outputPage;
+		
 		if ("xml".equals(format)) {
 			response.setContentType("text/xml");
 			outputPage = "/WEB-INF/results/films-xml.jsp";
+			
 		} else if ("text".equals(format)) {
 			response.setContentType("text/plain");
 			outputPage = "/WEB-INF/results/films-string.jsp";
+			
 		} else {
-			// no formating selected means Json will be chosen as the default
+			// no formating selected means JSON will be chosen as the default.
 			response.setContentType("application/json");
 			outputPage = "/WEB-INF/results/films-json.jsp";
 		}
@@ -86,7 +93,7 @@ public class deleteFilm extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 
