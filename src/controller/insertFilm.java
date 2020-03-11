@@ -54,6 +54,23 @@ public class insertFilm extends HttpServlet {
 		else {
 			System.out.println("Your film was not added.");
 		}
+		
+		String format = request.getParameter("format");
+	    String outputPage;
+	    if ("xml".equals(format)) {
+	      response.setContentType("text/xml");
+	      outputPage = "/WEB-INF/results/films-xml.jsp";
+	    } else if ("text".equals(format)) {
+	      response.setContentType("text/plain");
+	      outputPage = "/WEB-INF/results/films-string.jsp";
+	    } else {
+	    	//no formating selected means Json will be chosen as the default
+	      response.setContentType("application/json");
+	      outputPage = "/WEB-INF/results/films-json.jsp";
+	    }
+	    RequestDispatcher dispatcher =
+	      request.getRequestDispatcher(outputPage);
+	    dispatcher.include(request, response);
 
 		
 		

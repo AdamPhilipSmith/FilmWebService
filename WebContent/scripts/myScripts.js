@@ -82,7 +82,7 @@ function searchFilmsXMLTable() {
 	// Clears table for new entry
 	$('#table>tbody').empty();
 
-	var searchString = document.getElementById("searchString2").value;
+	var searchString = document.getElementById("searchString").value;
 	
 	//Stops the function printing all films if nothing is entered into the text box.
 	if (searchString === ""){
@@ -150,16 +150,25 @@ function searchFilmsJsonTable() {
 
 }
 
-function outputController(){
+function outputController(type){
 	
 	var e = document.getElementById("format-type");
-	var format = e.options[e.selectedIndex].value;
+	var f = document.getElementById("format-type2");
 	
-	if (format == "json"){
+	var format = e.options[e.selectedIndex].value;
+	var format2 = f.options[e.selectedIndex].value;
+	
+	if (format == "json"  && type == "show"){
 		allFilmsJsonTable();
 	}
-	if (format == "xml"){
+	if (format == "xml" && type == "show"){
 		allFilmsXMLTable();
+	} 
+	if (format2 == "json"  && type == "search"){
+		searchFilmsJsonTable();
+	}
+	if (format2 == "xml" && type == "search"){
+		searchFilmsXMLTable();
 	} 
 	else {
 		return;
@@ -168,15 +177,37 @@ function outputController(){
 	
 }
 
-function ajaxPost(address, data, responseHandler) {
-	  var request = getRequestObject();
-	  request.onreadystatechange = 
-	    function() { responseHandler(request); };
-	  request.open("POST", address, true);
-	  request.setRequestHeader("Content-Type", 
-	                           "application/x-www-form-urlencoded");
-	  request.send(data);
+function deleteFilm() {
+	
+	var id = document.getElementById("searchString3").value;
+	
+	
+	 var request = new XMLHttpRequest();
+	    request.open("GET","deleteFilm?filmid=" + id);
+	    request.send();
+	    
+	    
+	    
+	    alert("Your Film has been deleted.");
+	    
 	}
+
+function updateID() {
+	
+	var currentID = document.getElementById("searchString4").value;
+	var newID = document.getElementById("searchString5").value;
+	
+	
+	 var request = new XMLHttpRequest();
+	    request.open("GET","updateID?currentFilmID=" + currentID + "&newFilmID=" + newID);
+	    request.send();
+	    
+	    
+	    
+	    alert("Your Film has been updated.");
+	    
+	}
+
 
 
 
@@ -205,7 +236,7 @@ function addFilm(){
 	    
 	    
 	    
-	    alert("Your Film has been added to the database. Click ok to go back to the Homepage");
+	    alert("Your Film has been added to the database.");
 	    document.location.href="index.html"; 
 }
 

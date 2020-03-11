@@ -87,6 +87,7 @@ public class FilmDAO {
 		oneFilm = null;
 		// Create select statement and execute it
 		try {
+			
 			String query = "select * from films where id=" + id;
 			ResultSet rs1 = stmt.executeQuery(query);
 			// Retrieve the results
@@ -187,5 +188,22 @@ public class FilmDAO {
 
 		return i;
 	}
+	
+	public String getHost() throws SQLException {
+		
+		
+		openConnection();
+		String query = "SHOW VARIABLES WHERE Variable_name = 'hostname'";
+		ResultSet rs1 = stmt.executeQuery(query);
+		String hostname  = rs1.getString("hostname");
+		
+		
+
+		stmt.close();
+		closeConnection();
+		
+		return hostname;
+	}
+	
 
 }

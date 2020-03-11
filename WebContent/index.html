@@ -24,54 +24,121 @@
 
 
 <fieldset>
-  <legend>Get all films</legend>
+  <legend>Get all films from the database</legend>
   <form action="#">
    <label for="format-type">Format Type:</label>
    <select id="format-type">
      <option value="xml" selected="selected">XML</option>
      <option value="json">JSON</option>
-     <option value="test">TEXT</option>
+     
      
     </select>
    <br/>
    <input type="button" value="Show Films"
-          onclick='outputController()'/>
+          onclick='outputController("show")'/>
   </form>
   <p/>
-  <div id="table2"></div>
+  <div id="form1"></div>
 </fieldset>
 
 
-	<!--  <input type="button" value="Show All Films in XML as table" id="button"
-		onclick='allFilmsXMLTable()' />
-	<div id="films"></div> -->
+	<fieldset>
+  <legend>Search for a Film</legend>
+  <form action="#">
+   <label for="format-type2">Format Type:</label>
+   <select id="format-type2">
+     <option value="xml" selected="selected">XML</option>
+     <option value="json">JSON</option>
+     
+     
+    </select>
+   
 
-	<input type="button" value="Show All Films in Text as table"
-		id="button" onclick='allFilmsTextTable()' />
-	<div id="films"></div>
-
-	<input type="button" value="Search for films in Json" id="button"
-		onclick='searchFilmsJsonTable()' />
-
-	<div id="films"></div>
+          <div id="films"></div>
+          Enter Title:
 	<input type="text" id="searchString">
+	<input type="button" value="Search"
+          onclick='outputController("search")'/>
 	<br>
+  </form>
+  <p/>
+  <div id="form2"></div>
+</fieldset>
 
-	<input type="button" value="Search for films in XML" id="button"
-		onclick='searchFilmsXMLTable()' />
-
-	<div id="films"></div>
-	<input type="text" id="searchString2">
-	<br>
-
-	<input type="button" value="Delete Film. Enter ID below:" id="button"
-		onclick='searchFilmsXMLTable()' />
-
-	<div id="films"></div>
-	<input type="text" id="searchString3">
-	<br>
 	
-	<button onclick="window.location.href = 'addFilm.html';">Add Film</button>
+<fieldset>
+  <legend>Delete a Film</legend>
+  <form action="#">
+   <label for="format-type3">Format Type:</label>
+   <select id="format-type3">
+     <option value="xml" selected="selected">XML</option>
+     <option value="json">JSON</option>
+     
+     
+    </select>
+  
+	<div id="films"></div>
+	Enter ID: 
+	<input type="text" id="searchString3">
+	<input type="button" value="Delete" id="button"
+		onclick='deleteFilm()' />
+	</form>
+  <p/>
+  <div id="form3"></div>
+</fieldset>
+	
+		
+<fieldset>
+  <legend>Update ID</legend>
+  <form action="#">
+	 <label for="format-type2">Format Type:</label>
+   <select id="format-type2">
+     <option value="xml" selected="selected">XML</option>
+     <option value="json">JSON</option>
+     
+     
+    </select>
+	<div id="films"></div>
+	Current ID:<br><input type="text" id="searchString4">
+	
+	
+	<div id="films"></div>
+	New ID:<br> <input type="text" id="searchString5">
+	
+	
+	
+	<input type="button" value="Update" id="button"
+		onclick='updateID()' />
+	</form>
+	
+	<p/>
+  <div id="form4"></div>
+</fieldset>
+
+<fieldset>
+  <legend>Add a Film to the Database</legend>
+
+<form>
+
+	
+		
+		Title:<br> <input type="text" id="title"> <br>
+		ID:<br> <input type="text" id="id"> <br>
+		Review:<br> <input type="text" id="review"> <br>
+		Stars:<br> <input type="text" id="stars"> <br>
+		Director:<br> <input type="text" id="director"> <br>
+		Year:<br> <input type="text" id="year"> 
+		
+		
+		<input type="button" value="Add Film" id="button"
+		onclick='addFilm()' /> 
+		</form>
+	
+	
+  <div id="form4"></div>
+</fieldset>
+	
+	
 	
 	
 
@@ -86,7 +153,7 @@
 		<div class="table-responsive">
 			<h1>Results</h1>
 			<br />
-			<table class="table table-bordered table-striped" id="table">
+			<table class="table" id="table">
 				<thead>
 					<tr>
 						<th>Title</th>

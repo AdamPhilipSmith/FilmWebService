@@ -9,13 +9,13 @@ import model.FilmDAO;
 
 public class MainController {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
 		FilmDAO fdao = new FilmDAO();
 		
 		ArrayList<Film> films = fdao.getAllFilms();
 		
-		
+		System.out.println(fdao.getHost());
 		
 		//Prints out all films to String
 		for(int i=0; i<films.size(); i++) {
