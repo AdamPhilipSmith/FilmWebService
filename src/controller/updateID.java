@@ -47,10 +47,12 @@ public class updateID extends HttpServlet {
 
 		int newFilmIDint = Integer.parseInt(newFilmID);
 
-		int i = filmDAO.updateID(newFilmIDint, currentFilmIDint);
+		
 
 		// Prints to console alerting the user if a film has been updated and if so, how
 		// many. (Multiple films may exist with the same ID)
+		int i = filmDAO.updateID(newFilmIDint, currentFilmIDint);
+		
 		System.out.println(i);
 		if (i == 1) {
 			System.out.println("Your film ID has been updated.");

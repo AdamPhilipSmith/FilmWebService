@@ -8,8 +8,8 @@ List<Film> films = (List<Film>) request.getAttribute("films");
 
 //Outputs text formatted to be more readable
 for(int i=0; i<films.size(); i++) {
-	Film oneFilm = films.get(i);
-	response.getWriter().println("Title: " + oneFilm.getTitle() + "\n" + "Year: " + oneFilm.getYear() + "\n" + "Director: " + oneFilm.getDirector() + "\n" + "Stars: " + oneFilm.getStars() + "\n" + "Review: " + oneFilm.getReview());
+	Film film = films.get(i);
+	response.getWriter().println("Title: " + film.getTitle() + "\n" + "Year: " + film.getYear() + "\n" + "Director: " + film.getDirector() + "\n" + "Stars: " + film.getStars() + "\n" + "Review: " + film.getReview());
 	response.getWriter().println("-------------------------------------------");
 }
 
