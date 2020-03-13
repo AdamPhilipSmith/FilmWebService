@@ -1,3 +1,10 @@
+/**
+* The purpose of this class is to test
+* the CRUD methods from the Film.DAO class.
+* @author Adam Smith Student Number: 19017627
+* @version 1.0
+*/
+
 package controller;
 
 import java.sql.SQLException;

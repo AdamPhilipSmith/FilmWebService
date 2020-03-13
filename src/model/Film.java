@@ -1,6 +1,14 @@
+/**
+* The purpose of this class is to construct
+* 'Film' objects  .
+* @author Adam Smith Student Number: 19017627
+* @version 1.0
+*/
+
 package model;
 
 public class Film {
+	
 	public Film(int id, String title, int year, String director, String stars, String review) {
 		super();
 		this.id = id;

@@ -1,4 +1,3 @@
-
 // Handles user input from dropdown boxes so that the correct method is run.
 function outputController(query) {
 
@@ -6,20 +5,29 @@ function outputController(query) {
 	var f = document.getElementById("format-type2");
 
 	var format = e.options[e.selectedIndex].value;
-	var format2 = f.options[e.selectedIndex].value;
+	var format2 = f.options[f.selectedIndex].value;
 
 	if (format == "json" && query == "show") {
-		searchFilmsJsonTable();
+		allFilmsJsonTable();
 	}
+	if (format == "text" && query == "show") {
+		allFilmsText();
+	}
+	
 	if (format == "xml" && query == "show") {
-		searchFilmsXMLTable();
+		allFilmsXMLTable();
 	}
 	if (format2 == "json" && query == "search") {
 		searchFilmsJsonTable();
 	}
 	if (format2 == "xml" && query == "search") {
 		searchFilmsXMLTable();
-	} else {
+	}
+	if (format2 == "text" && query == "search") {
+		searchFilmsText();
+	}
+
+	else {
 		return;
 	}
 
@@ -81,8 +89,6 @@ function allFilmsJsonTable() {
 
 }
 
-
-
 function searchFilmsXMLTable() {
 	// Clears table for new entry
 	$('#table>tbody').empty();
@@ -91,9 +97,9 @@ function searchFilmsXMLTable() {
 
 	// Stops the function printing all films if nothing is entered into the text
 	// box.
-	//if (searchString === "") {
-		//return;
-	//}
+	 if (searchString === "") {
+	 return;
+	 }
 	$.ajax({
 		url : "getFilmByTitle?format=xml&filmname=" + searchString,
 		dataType : "xml",
@@ -135,9 +141,9 @@ function searchFilmsJsonTable() {
 
 	// Stops the function printing all films if nothing is entered into the text
 	// box.
-	//if (searchString === "") {
-		//return;
-	//}
+	 if (searchString === "") {
+	 return;
+	 }
 	$.getJSON("getFilmByTitle?filmname=" + searchString, function(data) {
 		var filmInfo = '';
 
@@ -155,8 +161,6 @@ function searchFilmsJsonTable() {
 	});
 
 }
-
-
 
 function deleteFilm() {
 
@@ -200,55 +204,29 @@ function addFilm() {
 	request.send();
 
 	alert("Your Film has been added to the database.");
-	
+
 }
 
 function allFilmsText() {
-	// Clears table for new entry.
-	$('#table>tbody').empty();
 
-	$.getJSON("getAllFilms?format=text", function(data) {
-		var filmInfo = '';
-		$.each(data, function(key, value) {
-			filmInfo += '<tr>';
-			filmInfo += '<td>' + value.title + '</td>';
-			filmInfo += '<td>' + value.id + '</td>';
-			filmInfo += '<td>' + value.review + '</td>';
-			filmInfo += '<td>' + value.stars + '</td>';
-			filmInfo += '<td>' + value.director + '</td>';
-			filmInfo += '<td>' + value.year + '</td>';
-			filmInfo += '<tr>';
-		});
-		$('#table').append(filmInfo);
-	});
-
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("table").innerHTML = this.responseText;
+		}
+	};
+	xhttp.open("POST", "getAllFilms?format=text", true);
+	xhttp.send();
 }
 
-function deleteFilmTest() {
-	// Clears table for new entry.
-	$('#table>tbody').empty();
-
-	var searchString = document.getElementById("searchString6").value;
-
-	// Stops the function printing all films if nothing is entered into the text
-	// box.
-	//if (searchString === "") {
-		//return;
-	//}
-	$.getJSON("deleteFilm?filmid=" + searchString, function(data) {
-		var filmInfo = '';
-
-		$.each(data, function(key, value) {
-			filmInfo += '<tr>';
-			filmInfo += '<td>' + value.title + '</td>';
-			filmInfo += '<td>' + value.id + '</td>';
-			filmInfo += '<td>' + value.review + '</td>';
-			filmInfo += '<td>' + value.stars + '</td>';
-			filmInfo += '<td>' + value.director + '</td>';
-			filmInfo += '<td>' + value.year + '</td>';
-			filmInfo += '<tr>';
-		});
-		$('#table').append(filmInfo);
-	});
-
+function searchFilmsText() {
+	var searchString = document.getElementById("searchString").value;
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("table").innerHTML = this.responseText;
+		}
+	};
+	xhttp.open("POST", "getFilmByTitle?format=text&filmname=" + searchString, true);
+	xhttp.send();
 }

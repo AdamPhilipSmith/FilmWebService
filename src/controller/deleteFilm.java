@@ -1,3 +1,10 @@
+/**
+* The purpose of this class is to delete a
+* film from the database.
+* @author Adam Smith Student Number: 19017627
+* @version 1.0
+*/
+
 package controller;
 
 import java.io.IOException;

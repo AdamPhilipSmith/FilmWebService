@@ -1,3 +1,11 @@
+/**
+* The purpose of this class is to construct
+
+* access the database and retrieve the requested info  .
+* @author Adam Smith Student Number: 19017627
+* @version 1.0
+*/
+
 package model;
 
 import java.sql.Connection;
@@ -7,6 +15,8 @@ import java.sql.*;
 
 public class FilmDAO {
 
+
+	public static Object instance;
 	Film oneFilm = null;
 	Connection conn = null;
 	Statement stmt = null;
