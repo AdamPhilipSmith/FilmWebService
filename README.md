@@ -17,5 +17,5 @@ Complete but needs refactoring.
 As above
 
 <b>To Run:</b>
-Runs in JDK and uses Apache Tomcat v8.0.
+Run on Server. Runs in JDK1.8.0_241 and uses Apache Tomcat v8.0. 
 
